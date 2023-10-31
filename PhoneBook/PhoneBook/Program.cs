@@ -48,16 +48,24 @@ namespace PhoneBook
                     continue;
 
                 //делаем выборку страницы
-                var phonePage = phoneBook.Skip((page - 1) * 2).Take(2);
+                var phonePageSortName = phoneBook.Skip((page - 1) * 2).Take(2).OrderBy(p => p.Name);
+                var phonePageSortLastName = phoneBook.Skip((page - 1) * 2).Take(2).OrderBy(p => p.LastName);
 
 
-                //вывод 
-                foreach (var item in phonePage)
+                //вывод с сортировкой по имени
+                Console.WriteLine("вывод с сортировкой по имени");
+                foreach (var item in phonePageSortName)
                 {
                     Console.WriteLine("Имя: {0} {1}, Телефон: {2}, Почта: {3}", item.Name, item.LastName, item.PhoneNumber, item.Email);
                 }
                 Console.WriteLine();
 
+                //вывод с сортировкой по фамилии
+                Console.WriteLine("вывод с сортировкой по фамилии");
+                foreach (var item in phonePageSortLastName)
+                {
+                    Console.WriteLine("Имя: {0} {1}, Телефон: {2}, Почта: {3}", item.Name, item.LastName, item.PhoneNumber, item.Email);
+                }
             }
         }
     }
